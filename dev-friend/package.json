@@ -10,7 +10,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:dev-friend.helloWorld"
+    "onCommand:dev-friend.helloWorld",
+    "onCommand:dev-friend.startTimer",
+    "onCommand:dev-friend.pauseTimer"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -18,6 +20,14 @@
       {
         "command": "dev-friend.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "dev-friend.startTimer",
+        "title": "Start Timer"
+      },
+      {
+        "command": "dev-friend.pauseTimer",
+        "title": "Pause timer"
       }
     ]
   },
@@ -36,5 +46,8 @@
     "mocha": "^8.4.0",
     "typescript": "^4.3.2",
     "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "timer-node": "^5.0.5"
   }
 }
