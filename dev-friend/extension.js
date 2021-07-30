@@ -10,7 +10,8 @@ const { Timer } = require('timer-node');
  * @param {vscode.ExtensionContext} context
  */
 
-const timer = new Timer(); 
+const timer = new Timer();
+
 function activate(context) {
 
     const helloWorldId = 'dev-friend.helloWorld'; 
@@ -25,14 +26,22 @@ function activate(context) {
         vscode.window.showInformationMessage('Timer started!');
         if (timer.isStarted()) {
             timer.resume(); 
-        } else timer.start(); 
+            this.hydrate = setInterval(hydratedTask,1800000);
+            this.rest = setInterval(restTask,3000000);
+        } else {
+            timer.start(); 
+            this.hydrate = setInterval(hydratedTask,1800000);
+            this.rest = setInterval(restTask,3000000);
+        }
         updateStartButton(); 
         setInterval(updateCurrentTime, 100);
     }));
 
     context.subscriptions.push(vscode.commands.registerCommand(pauseTimerId, () => {
         vscode.window.showInformationMessage('Timer paused!');
-        timer.pause(); 
+        timer.pause();
+        clearInterval(this.hydrate);
+        clearInterval(this.rest);
         updatePauseButton(); 
     }));
 
@@ -68,6 +77,14 @@ const updateCurrentTime = () => {
     currentTime.text = (timer.time().h < 10 ? "0" : "") + timer.time().h.toString() 
     + (timer.time().m < 10 ? ":0" : ":") + timer.time().m.toString() 
     + (timer.time().s < 10 ? ":0" : ":") + timer.time().s.toString(); 
+}
+
+const hydratedTask = () =>  {
+    vscode.window.showInformationMessage('Drink some water and get hydrated!');
+}
+
+const restTask = () =>  {
+    vscode.window.showInformationMessage('Have A Break And Take Rest!');
 }
 
 // this method is called when your extension is deactivated
