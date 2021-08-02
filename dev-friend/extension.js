@@ -2,7 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const { Timer } = require('timer-node'); 
-
+const {hydratedTask, restTask} = require('./notifications')
+const {updateLocalStorage} = require('./localStore')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -43,6 +44,7 @@ function activate(context) {
         clearInterval(this.hydrate);
         clearInterval(this.rest);
         updatePauseButton(); 
+        updateLocalStorage(context,timer)
     }));
 
     currentTime = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 20);
@@ -79,13 +81,7 @@ const updateCurrentTime = () => {
     + (timer.time().s < 10 ? ":0" : ":") + timer.time().s.toString(); 
 }
 
-const hydratedTask = () =>  {
-    vscode.window.showInformationMessage('Drink some water and get hydrated!');
-}
 
-const restTask = () =>  {
-    vscode.window.showInformationMessage('Have A Break And Take Rest!');
-}
 
 // this method is called when your extension is deactivated
 function deactivate() {}

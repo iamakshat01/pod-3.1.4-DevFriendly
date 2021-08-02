@@ -1,65 +1,41 @@
-# dev-friend README
+# Dev-Friend 
 
-This is the README for your extension "dev-friend". After writing up a brief description, we recommend including the following sections.
+A VS-Code extension to track the time, lines of code while working in it. 
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- It provides time tracking and captures line of code written.
+- Provides notifications to trake break and get hydrated.
+- A SideBar where user can view his previous days active time and lines of code written.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Local Setup
+- Fork the repository and clone it to your local.
+- Run `npm install`.
+- Open extension.js and Press `F5`.
+- Select VS-Code development.
 
-## Requirements
+## Useful commands
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Switch branches:
+```
+git checkout <branch-name>
+```
+
+Make new branch and switch to it:
+```
+git checkout -b <branch-name>
+```
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
 
-For example:
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
-This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
