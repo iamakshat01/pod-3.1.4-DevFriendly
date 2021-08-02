@@ -1,11 +1,23 @@
-# Explorer Template
+# Dev-Friend 
 
-This is a template to help you get started with your projects. Find out more information inside of the Fello Handbook.
+A VS-Code extension to track the time, lines of code while working in it. 
 
-This template has a `main` and `staging` branch already setup. 
+## Features
 
-- Code will only be merged into `main` once your Pod Leader has reviewed your code. 
-- During the week, you'll merge code into `staging`.
+- It provides time tracking and captures line of code written.
+- Provides notifications to trake break and get hydrated.
+- A SideBar where user can view his previous days active time and lines of code written.
+
+## Usage
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Local Setup
+- Fork the repository and clone it to your local.
+- Run `npm install`.
+- Open extension.js and Press `F5`.
+- Select VS-Code development.
 
 ## Useful commands
 
@@ -19,9 +31,11 @@ Make new branch and switch to it:
 git checkout -b <branch-name>
 ```
 
-I'd recommend using the GitHub CLI for reviewing Pull Requests, making Pull Requests and making Issues.
+## Extension Settings
 
-Download it with Homebrew:
-```
-brew install gh
-```
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+
