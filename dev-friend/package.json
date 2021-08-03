@@ -16,6 +16,7 @@
   ],
   "main": "./extension.js",
   "contributes": {
+    
     "viewsContainers": {
         "activitybar": [
             {
@@ -31,7 +32,7 @@
                 "id": "stats",
                 "name": "Stats"
             }
-        ]
+        ] 
     },
     "viewsWelcome": [
         {
