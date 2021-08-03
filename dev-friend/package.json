@@ -1,0 +1,77 @@
+{
+  "name": "dev-friend",
+  "displayName": "Dev Friend",
+  "description": "A productivity based extension to track time and get notifications about remaining hydrated etc.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.58.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:dev-friend.helloWorld",
+    "onCommand:dev-friend.startTimer",
+    "onCommand:dev-friend.pauseTimer"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    
+    "viewsContainers": {
+        "activitybar": [
+            {
+                "id": "coding-stats",
+                "title": "Coding Stats",
+                "icon": "stats.svg"
+            }
+        ]
+    },
+    "views": {
+        "coding-stats": [
+            {
+                "id": "stats",
+                "name": "Stats"
+            }
+        ] 
+    },
+    "viewsWelcome": [
+        {
+            "view": "stats",
+            "contents": "Aug 2 2021: 2 hours 33 minutes 2 seconds"
+        }
+    ],
+    "commands": [
+      {
+        "command": "dev-friend.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "dev-friend.startTimer",
+        "title": "Start Timer"
+      },
+      {
+        "command": "dev-friend.pauseTimer",
+        "title": "Pause timer"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.58.0",
+    "eslint": "^7.27.0",
+    "glob": "^7.1.7",
+    "mocha": "^8.4.0",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "timer-node": "^5.0.5"
+  }
+}
