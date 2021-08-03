@@ -2,8 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 const { Timer } = require('timer-node'); 
-const {hydratedTask, restTask} = require('./notifications')
-const {updateLocalStorage} = require('./localStore')
+const { hydratedTask, restTask } = require('./notifications');
+const { updateLocalStorage } = require('./localStore');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -21,18 +21,19 @@ function activate(context) {
 
     context.subscriptions.push(vscode.commands.registerCommand(helloWorldId, () => {
         vscode.window.showInformationMessage('Hello world!');
+        console.log(context.globalState["_value"]["Mon Aug 02 2021"]); 
     }));
 
     context.subscriptions.push(vscode.commands.registerCommand(startTimerId, () => {
         vscode.window.showInformationMessage('Timer started!');
         if (timer.isStarted()) {
             timer.resume(); 
-            this.hydrate = setInterval(hydratedTask,1800000);
-            this.rest = setInterval(restTask,3000000);
+            this.hydrate = setInterval(hydratedTask, 1800000);
+            this.rest = setInterval(restTask, 3000000);
         } else {
             timer.start(); 
-            this.hydrate = setInterval(hydratedTask,1800000);
-            this.rest = setInterval(restTask,3000000);
+            this.hydrate = setInterval(hydratedTask, 1800000);
+            this.rest = setInterval(restTask, 3000000);
         }
         updateStartButton(); 
         setInterval(updateCurrentTime, 100);
@@ -44,7 +45,7 @@ function activate(context) {
         clearInterval(this.hydrate);
         clearInterval(this.rest);
         updatePauseButton(); 
-        updateLocalStorage(context,timer)
+        updateLocalStorage(context, timer);
     }));
 
     currentTime = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 20);
@@ -62,6 +63,7 @@ function activate(context) {
 
     currentTime.show(); 
     startTimer.show(); 
+
 }
 
 const updateStartButton = () => {
@@ -72,7 +74,6 @@ const updateStartButton = () => {
 const updatePauseButton = () => {
     startTimer.show();
     pauseTimer.hide(); 
-    console.log(timer.time()); 
 }
 
 const updateCurrentTime = () => {
