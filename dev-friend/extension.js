@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const { Timer } = require('timer-node'); 
 const { hydratedTask, restTask } = require('./notifications');
 const { updateLocalStorage } = require('./localStore');
+const DataProvider = require("./dataProvider.js");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -21,8 +22,10 @@ function activate(context) {
 
     context.subscriptions.push(vscode.commands.registerCommand(helloWorldId, () => {
         vscode.window.showInformationMessage('Hello world!');
-        console.log(context.globalState["_value"]["Mon Aug 02 2021"]); 
-    }));
+        this.userData=prevData(context);
+        setTimeout(updateSideBar,1000,this.userData);
+        // console.log(context.globalState["_value"]["Mon Aug 02 2021"]); 
+        }));
 
     context.subscriptions.push(vscode.commands.registerCommand(startTimerId, () => {
         vscode.window.showInformationMessage('Timer started!');
@@ -31,12 +34,15 @@ function activate(context) {
             this.hydrate = setInterval(hydratedTask, 1800000);
             this.rest = setInterval(restTask, 3000000);
         } else {
-            timer.start(); 
+            timer.start();
+            this.userData=prevData(context);
+            setTimeout(updateSideBar,1000,this.userData);
             this.hydrate = setInterval(hydratedTask, 1800000);
             this.rest = setInterval(restTask, 3000000);
         }
         updateStartButton(); 
         setInterval(updateCurrentTime, 100);
+        this.sidebar = setInterval(updateSideBar,60000,this.userData)
     }));
 
     context.subscriptions.push(vscode.commands.registerCommand(pauseTimerId, () => {
@@ -44,6 +50,7 @@ function activate(context) {
         timer.pause();
         clearInterval(this.hydrate);
         clearInterval(this.rest);
+        clearInterval(this.sidebar);
         updatePauseButton(); 
         updateLocalStorage(context, timer);
     }));
@@ -62,7 +69,9 @@ function activate(context) {
     context.subscriptions.push([currentTime, startTimer, pauseTimer]);
 
     currentTime.show(); 
-    startTimer.show(); 
+    startTimer.show();
+    
+    
 
 }
 
@@ -82,7 +91,22 @@ const updateCurrentTime = () => {
     + (timer.time().s < 10 ? ":0" : ":") + timer.time().s.toString(); 
 }
 
+const updateSideBar = (userData) => {
+    let myData = new DataProvider(timer,userData);
+    let view = vscode.window.createTreeView("stats", {
+        treeDataProvider: myData,
+    });
+    context.subscriptions.push(view);
+}
 
+const prevData = (context) => {
+    let today = new Date();
+    let yesterday = new Date();
+
+    yesterday.setDate(today.getDate() - 1);
+
+    return context.globalState.get(yesterday.toDateString());
+}
 
 // this method is called when your extension is deactivated
 function deactivate() {}
