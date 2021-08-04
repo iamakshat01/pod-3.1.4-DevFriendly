@@ -9,6 +9,10 @@ A VS-Code extension to track the time, lines of code while working in it.
 - A SideBar where user can view his previous days active time and lines of code written.
 
 ## Usage
+- Hit `Ctrl + Shift + P`
+- Type the command `Start Timer`
+- You will see the timer and a pause button of the status bar.
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
