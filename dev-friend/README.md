@@ -11,7 +11,9 @@ A VS-Code extension to track the time, lines of code while working in it.
 ## Usage
 - Hit `Ctrl + Shift + P`
 - Type the command `Start Timer`
-- You will see the timer and a pause button of the status bar.
+- You will see the timer and a pause button on the status bar.
+![Timer image in status bar](assets/imgs/timerImage.png)
+![Command in Command Palette](assets/imgs/commandImage.png)
 
 
 ## Contributing
