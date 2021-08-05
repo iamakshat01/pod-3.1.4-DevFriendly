@@ -5,6 +5,7 @@ const { Timer } = require('timer-node');
 const { hydratedTask, restTask } = require('./notifications');
 const { updateLocalStorage } = require('./localStore');
 const DataProvider = require("./dataProvider.js");
+const view = require("./view");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -71,7 +72,19 @@ function activate(context) {
     currentTime.show(); 
     startTimer.show();
     
-    
+    const commmandID = "memes.show";
+
+    context.subscriptions.push(
+      vscode.commands.registerCommand(commmandID, () => {
+        view.show(context);
+      })
+    );
+
+    memes = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 15);
+    memes.text = "Memes";
+    memes.command = commmandID;
+
+    memes.show();
 
 }
 
