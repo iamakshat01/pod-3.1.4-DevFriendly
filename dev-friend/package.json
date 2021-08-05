@@ -16,29 +16,28 @@
   ],
   "main": "./extension.js",
   "contributes": {
-    
     "viewsContainers": {
-        "activitybar": [
-            {
-                "id": "coding-stats",
-                "title": "Coding Stats",
-                "icon": "stats.svg"
-            }
-        ]
+      "activitybar": [
+        {
+          "id": "coding-stats",
+          "title": "Coding Stats",
+          "icon": "stats.svg"
+        }
+      ]
     },
     "views": {
-        "coding-stats": [
-            {
-                "id": "stats",
-                "name": "Stats"
-            }
-        ] 
+      "coding-stats": [
+        {
+          "id": "stats",
+          "name": "Stats"
+        }
+      ]
     },
     "viewsWelcome": [
-        {
-            "view": "stats",
-            "contents": "Aug 2 2021: 2 hours 33 minutes 2 seconds"
-        }
+      {
+        "view": "stats",
+        "contents": "Aug 2 2021: 2 hours 33 minutes 2 seconds"
+      }
     ],
     "commands": [
       {
@@ -72,6 +71,7 @@
     "vscode-test": "^1.5.2"
   },
   "dependencies": {
+    "inspirational-quotes": "^1.0.8",
     "timer-node": "^5.0.5"
   }
 }
