@@ -12,7 +12,8 @@
   "activationEvents": [
     "onCommand:dev-friend.helloWorld",
     "onCommand:dev-friend.startTimer",
-    "onCommand:dev-friend.pauseTimer"
+    "onCommand:dev-friend.pauseTimer",
+    "onCommand:dev-friend.resetTimer"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -52,7 +53,11 @@
       {
         "command": "dev-friend.pauseTimer",
         "title": "Pause timer"
-      }
+      },
+      {
+        "command": "dev-friend.resetTimer",
+        "title": "Reset Timer"
+    }
     ]
   },
   "scripts": {

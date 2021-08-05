@@ -19,6 +19,7 @@ function activate(context) {
     const helloWorldId = 'dev-friend.helloWorld'; 
 	const startTimerId = 'dev-friend.startTimer'; 
     const pauseTimerId = 'dev-friend.pauseTimer'; 
+    const resetTimerId = 'dev-friend.resetTimer';
 
     context.subscriptions.push(vscode.commands.registerCommand(helloWorldId, () => {
         vscode.window.showInformationMessage('Hello world!');
@@ -55,6 +56,17 @@ function activate(context) {
         updateLocalStorage(context, timer);
     }));
 
+    context.subscriptions.push(vscode.commands.registerCommand(resetTimerId, () => {
+        vscode.window.showInformationMessage('Timer reset!');
+        timer.pause();
+        updateLocalStorage(context, timer);
+        clearInterval(this.hydrate);
+        clearInterval(this.rest);
+        clearInterval(this.sidebar);
+        timer.clear();
+        updatePauseButton();
+   }));
+
     currentTime = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 20);
     currentTime.text = "00:00:00";
 
@@ -66,7 +78,11 @@ function activate(context) {
     pauseTimer.command = pauseTimerId;
     pauseTimer.text = "Pause"; 
 
-    context.subscriptions.push([currentTime, startTimer, pauseTimer]);
+    resetTimer = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
+    resetTimer.command = resetTimerId;
+    resetTimer.text = "Reset";
+
+    context.subscriptions.push([currentTime, startTimer, pauseTimer, resetTimer]);
 
     currentTime.show(); 
     startTimer.show();
@@ -78,6 +94,7 @@ function activate(context) {
 const updateStartButton = () => {
     startTimer.hide(); 
     pauseTimer.show(); 
+    resetTimer.show();
 }
 
 const updatePauseButton = () => {
