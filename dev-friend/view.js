@@ -54,8 +54,8 @@ function getUri(filename) {
 async function getImg() {
   const meme = await redditImageFetcher.fetch({
     type: 'meme',
-    addSubreddit: ['memes', 'funny'], 
-    removeSubreddit: ['dankmemes']
+    addSubreddit: ['funny'], 
+    removeSubreddit: ['dankmemes','adult']
   });
   return meme[0].image;
 }
