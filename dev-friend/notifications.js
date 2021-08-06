@@ -6,7 +6,7 @@ const hydratedTask = () =>  {
 }
 
 const restTask = () =>  {
-    vscode.window.showInformationMessage(`Have A Break And Take Rest!\n ${motivate.getRandomQuote().text} \n -${motivate.getRandomQuote().author}`);
+    vscode.window.showInformationMessage(`Have a break And take some rest!\n ${motivate.getRandomQuote().text} \n -${motivate.getRandomQuote().author}`);
 }
 
-module.exports = { hydratedTask, restTask};
+module.exports = { hydratedTask, restTask };
