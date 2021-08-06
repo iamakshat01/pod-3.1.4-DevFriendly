@@ -57,9 +57,11 @@ function activate(context) {
     }));
 
     context.subscriptions.push(vscode.commands.registerCommand(resetTimerId, () => {
+        if (!timer.isPaused()) {
+            updateLocalStorage(context, timer); 
+        }
         vscode.window.showInformationMessage('Timer reset!');
         timer.pause();
-        updateLocalStorage(context, timer);
         clearInterval(this.hydrate);
         clearInterval(this.rest);
         clearInterval(this.sidebar);
