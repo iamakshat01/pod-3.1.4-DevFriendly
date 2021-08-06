@@ -25,8 +25,7 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand(helloWorldId, () => {
         vscode.window.showInformationMessage('Hello world!');
         this.userData=prevData(context);
-        setTimeout(updateSideBar,1000,this.userData);
-        // console.log(context.globalState["_value"]["Mon Aug 02 2021"]); 
+        setTimeout(updateSideBar,1000,this.userData); 
         }));
 
     context.subscriptions.push(vscode.commands.registerCommand(startTimerId, () => {
@@ -101,7 +100,6 @@ function activate(context) {
     memes.command = commmandID;
 
     memes.show();
-
 }
 
 const updateStartButton = () => {
@@ -130,12 +128,15 @@ const updateSideBar = (userData) => {
 }
 
 const prevData = (context) => {
+    let arr = []; 
     let today = new Date();
     let yesterday = new Date();
 
     yesterday.setDate(today.getDate() - 1);
+    arr.push(context.globalState.get(today.toDateString()));
+    arr.push(context.globalState.get(yesterday.toDateString()))
 
-    return context.globalState.get(yesterday.toDateString());
+    return arr;
 }
 
 // this method is called when your extension is deactivated
