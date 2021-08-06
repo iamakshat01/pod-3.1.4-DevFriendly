@@ -25,8 +25,7 @@ function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand(helloWorldId, () => {
         vscode.window.showInformationMessage('Hello world!');
         this.userData=prevData(context);
-        setTimeout(updateSideBar,1000,this.userData);
-        console.log(context.globalState["_value"]); 
+        setTimeout(updateSideBar,1000,this.userData); 
         }));
 
     context.subscriptions.push(vscode.commands.registerCommand(startTimerId, () => {
