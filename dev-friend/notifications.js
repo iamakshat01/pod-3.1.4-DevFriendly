@@ -11,4 +11,4 @@ const restTask = () =>  {
     vscode.window.showInformationMessage(`${motivate.getRandomQuote()}`);
 }
 
-module.exports = { hydratedTask, restTask};
+module.exports = { hydratedTask, restTask };

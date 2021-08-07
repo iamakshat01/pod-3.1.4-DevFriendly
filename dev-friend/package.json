@@ -38,7 +38,7 @@
     "viewsWelcome": [
       {
         "view": "stats",
-        "contents": "Aug 2 2021: 2 hours 33 minutes 2 seconds"
+        "contents": "Your coding stats will show up here!"
       }
     ],
     "commands": [
@@ -52,7 +52,7 @@
       },
       {
         "command": "dev-friend.pauseTimer",
-        "title": "Pause timer"
+        "title": "Pause Timer"
       },
       {
         "command": "dev-friend.resetTimer",
