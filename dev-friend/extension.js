@@ -5,6 +5,7 @@ const { Timer } = require('timer-node');
 const { hydratedTask, restTask } = require('./notifications');
 const { updateLocalStorage } = require('./localStore');
 const DataProvider = require("./dataProvider.js");
+const view = require("./view");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -19,12 +20,12 @@ function activate(context) {
     const helloWorldId = 'dev-friend.helloWorld'; 
 	const startTimerId = 'dev-friend.startTimer'; 
     const pauseTimerId = 'dev-friend.pauseTimer'; 
+    const resetTimerId = 'dev-friend.resetTimer';
 
     context.subscriptions.push(vscode.commands.registerCommand(helloWorldId, () => {
         vscode.window.showInformationMessage('Hello world!');
         this.userData=prevData(context);
-        setTimeout(updateSideBar,1000,this.userData);
-        // console.log(context.globalState["_value"]["Mon Aug 02 2021"]); 
+        setTimeout(updateSideBar,1000,this.userData); 
         }));
 
     context.subscriptions.push(vscode.commands.registerCommand(startTimerId, () => {
@@ -55,6 +56,19 @@ function activate(context) {
         updateLocalStorage(context, timer);
     }));
 
+    context.subscriptions.push(vscode.commands.registerCommand(resetTimerId, () => {
+        if (!timer.isPaused()) {
+            updateLocalStorage(context, timer); 
+        }
+        vscode.window.showInformationMessage('Timer reset!');
+        timer.pause();
+        clearInterval(this.hydrate);
+        clearInterval(this.rest);
+        clearInterval(this.sidebar);
+        timer.clear();
+        updatePauseButton();
+   }));
+
     currentTime = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 20);
     currentTime.text = "00:00:00";
 
@@ -66,18 +80,34 @@ function activate(context) {
     pauseTimer.command = pauseTimerId;
     pauseTimer.text = "Pause"; 
 
-    context.subscriptions.push([currentTime, startTimer, pauseTimer]);
+    resetTimer = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 0);
+    resetTimer.command = resetTimerId;
+    resetTimer.text = "Reset";
+
+    context.subscriptions.push([currentTime, startTimer, pauseTimer, resetTimer]);
 
     currentTime.show(); 
     startTimer.show();
     
-    
+    const commmandID = "memes.show";
 
+    context.subscriptions.push(
+      vscode.commands.registerCommand(commmandID, () => {
+        view.show(context);
+      })
+    );
+
+    memes = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 15);
+    memes.text = "Memes";
+    memes.command = commmandID;
+
+    memes.show();
 }
 
 const updateStartButton = () => {
     startTimer.hide(); 
     pauseTimer.show(); 
+    resetTimer.show();
 }
 
 const updatePauseButton = () => {
@@ -100,12 +130,15 @@ const updateSideBar = (userData) => {
 }
 
 const prevData = (context) => {
+    let arr = []; 
     let today = new Date();
     let yesterday = new Date();
 
     yesterday.setDate(today.getDate() - 1);
+    arr.push(context.globalState.get(today.toDateString()));
+    arr.push(context.globalState.get(yesterday.toDateString()))
 
-    return context.globalState.get(yesterday.toDateString());
+    return arr;
 }
 
 // this method is called when your extension is deactivated

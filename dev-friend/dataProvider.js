@@ -6,11 +6,11 @@ class DataProvider {
     this.users = [
       {
         first: "Today",
-        position: { Hours: timer.time().h, Minutes: timer.time().m },
+        position: { Hours: (userData[0].h + timer.time().h), Minutes: (userData[0].m + timer.time().m) },
       },
       {
         first: "Yesterday",
-        position: { Hours: userData.h, Minutes: userData.m },
+        position: { Hours: userData[1].h, Minutes: userData[1].m },
       },
     ];
     this.userTreeItems = this.convertUsersToTreeItems();
@@ -59,7 +59,7 @@ class UserTreeItem {
         `Hours: ${this.user.position.Hours}`
       );
       let prop2 = new vscode.TreeItem(
-        `Mintues: ${this.user.position.Minutes}`
+        `Minutes: ${this.user.position.Minutes}`
       );
       this.positionDetails = [prop1, prop2];
     }
