@@ -2,9 +2,9 @@
   "name": "dev-friend",
   "displayName": "Dev Friend",
   "publisher": "DevFriend",
-  "logo": "https://i.ibb.co/sw5DXFQ/Screenshot-from-2021-08-10-11-46-43.png",
+  "icon": "assets/imgs/logo.png",
   "description": "A productivity based extension to track time and get notifications about remaining hydrated etc.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.58.0"
   },
