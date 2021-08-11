@@ -15,6 +15,7 @@
     "Other"
   ],
   "activationEvents": [
+    "*",
     "onCommand:dev-friend.helloWorld",
     "onCommand:dev-friend.startTimer",
     "onCommand:dev-friend.pauseTimer",
